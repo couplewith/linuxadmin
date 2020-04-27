@@ -1,0 +1,103 @@
+--------------------------------
+ 10초 캐시 1 회차
+--------------------------------
+
+[root@es1 ~]# ab -n 300 -c 100 -k http://t-cache.interpark.com/cache1/Lib/js/jwplayer/skins/glow.xml
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking t-cache.interpark.com (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Finished 300 requests
+
+
+Server Software:        nginx/1.11.10
+Server Hostname:        t-cache.interpark.com
+Server Port:            80
+
+Document Path:          /cache1/Lib/js/jwplayer/skins/glow.xml
+Document Length:        24565 bytes
+
+Concurrency Level:      100
+Time taken for tests:   0.053 seconds
+Complete requests:      300
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    300
+Total transferred:      7527300 bytes
+HTML transferred:       7369500 bytes
+Requests per second:    5653.98 [#/sec] (mean)
+Time per request:       17.687 [ms] (mean)
+Time per request:       0.177 [ms] (mean, across all concurrent requests)
+Transfer rate:          138538.99 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    3   4.4      0      14
+Processing:     2   10   4.9     11      21
+Waiting:        0   10   5.0     10      20
+Total:          2   13   5.7     14      23
+
+Percentage of the requests served within a certain time (ms)
+  50%     14
+  66%     16
+  75%     18
+  80%     19
+  90%     20
+  95%     21
+  98%     22
+  99%     22
+ 100%     23 (longest request)
+[root@es1 ~]# ab -n 300 -c 100 -k http://t-cache.interpark.com/cache1/Lib/js/jwplayer/skins/glow.xml
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking t-cache.interpark.com (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Finished 300 requests
+
+
+Server Software:        nginx/1.11.10
+Server Hostname:        t-cache.interpark.com
+Server Port:            80
+
+Document Path:          /cache1/Lib/js/jwplayer/skins/glow.xml
+Document Length:        24565 bytes
+
+Concurrency Level:      100
+Time taken for tests:   0.063 seconds
+Complete requests:      300
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    300
+Total transferred:      7527300 bytes
+HTML transferred:       7369500 bytes
+Requests per second:    4756.32 [#/sec] (mean)
+Time per request:       21.025 [ms] (mean)
+Time per request:       0.210 [ms] (mean, across all concurrent requests)
+Transfer rate:          116543.72 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    3   4.9      0      20
+Processing:     2   11   5.9     11      24
+Waiting:        1   10   5.6     11      21
+Total:          4   14   5.5     16      25
+
+Percentage of the requests served within a certain time (ms)
+  50%     16
+  66%     16
+  75%     18
+  80%     18
+  90%     19
+  95%     22
+  98%     22
+  99%     22
+ 100%     25 (longest request)
+[root@es1 ~]#

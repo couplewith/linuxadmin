@@ -1,0 +1,159 @@
+--------------------------------
+ No 캐시 1 회차
+--------------------------------
+
+[root@es1 ~]# ab -n 300 -c 100 -k http://t-cache.interpark.com/nocache/Lib/js/jwplayer/skins/glow.x
+ml
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking t-cache.interpark.com (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Finished 300 requests
+
+
+Server Software:        nginx/1.11.10
+Server Hostname:        t-cache.interpark.com
+Server Port:            80
+
+Document Path:          /nocache/Lib/js/jwplayer/skins/glow.xml
+Document Length:        1297 bytes
+
+Concurrency Level:      100
+Time taken for tests:   6.588 seconds
+Complete requests:      300
+Failed requests:        0
+Write errors:           0
+Non-2xx responses:      300
+Keep-Alive requests:    300
+Total transferred:      481026 bytes
+HTML transferred:       389100 bytes
+Requests per second:    45.54 [#/sec] (mean)
+Time per request:       2195.917 [ms] (mean)
+Time per request:       21.959 [ms] (mean, across all concurrent requests)
+Transfer rate:          71.31 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    3   4.0      0      13
+Processing:    93 2077 632.6   2094    4226
+Waiting:       80 2077 632.8   2094    4226
+Total:         93 2080 633.7   2094    4226
+
+Percentage of the requests served within a certain time (ms)
+  50%   2094
+  66%   2101
+  75%   2854
+  80%   2857
+  90%   2864
+  95%   2867
+  98%   2870
+  99%   2871
+ 100%   4226 (longest request)
+ 
+ --------------------------------
+ No 캐시 2 회차
+--------------------------------
+[root@es1 ~]# ab -n 300 -c 100 -k http://t-cache.interpark.com/nocache/Lib/js/jwplayer/skins/glow.xml
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking t-cache.interpark.com (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Finished 300 requests
+
+
+Server Software:        nginx/1.11.10
+Server Hostname:        t-cache.interpark.com
+Server Port:            80
+
+Document Path:          /nocache/Lib/js/jwplayer/skins/glow.xml
+Document Length:        1297 bytes
+
+Concurrency Level:      100
+Time taken for tests:   9.230 seconds
+Complete requests:      300
+Failed requests:        0
+Write errors:           0
+Non-2xx responses:      300
+Keep-Alive requests:    300
+Total transferred:      481026 bytes
+HTML transferred:       389100 bytes
+Requests per second:    32.50 [#/sec] (mean)
+Time per request:       3076.712 [ms] (mean)
+Time per request:       30.767 [ms] (mean, across all concurrent requests)
+Transfer rate:          50.89 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    4   5.6      0      19
+Processing:    55 2875 1564.4   3077    8225
+Waiting:       36 2875 1564.5   3077    8225
+Total:         55 2879 1563.5   3077    8229
+
+Percentage of the requests served within a certain time (ms)
+  50%   3077
+  66%   3084
+  75%   4164
+  80%   4166
+  90%   5164
+  95%   5169
+  98%   5172
+  99%   5173
+ 100%   8229 (longest request)
+[root@es1 ~]# ab -n 300 -c 100 -k http://t-cache.interpark.com/nocache/Lib/js/jwplayer/skins/glow.xml
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking t-cache.interpark.com (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Finished 300 requests
+
+
+Server Software:        nginx/1.11.10
+Server Hostname:        t-cache.interpark.com
+Server Port:            80
+
+Document Path:          /nocache/Lib/js/jwplayer/skins/glow.xml
+Document Length:        1297 bytes
+
+Concurrency Level:      100
+Time taken for tests:   5.456 seconds
+Complete requests:      300
+Failed requests:        0
+Write errors:           0
+Non-2xx responses:      300
+Keep-Alive requests:    300
+Total transferred:      479583 bytes
+HTML transferred:       389100 bytes
+Requests per second:    54.99 [#/sec] (mean)
+Time per request:       1818.556 [ms] (mean)
+Time per request:       18.186 [ms] (mean, across all concurrent requests)
+Transfer rate:          85.85 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   3.3      0      10
+Processing:    26 1796 228.9   1836    3720
+Waiting:       26 1796 229.1   1836    3719
+Total:         26 1798 227.7   1836    3720
+
+Percentage of the requests served within a certain time (ms)
+  50%   1836
+  66%   1849
+  75%   1884
+  80%   1885
+  90%   1887
+  95%   1889
+  98%   1895
+  99%   1895
+ 100%   3720 (longest request)

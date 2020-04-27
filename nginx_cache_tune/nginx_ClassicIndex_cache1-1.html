@@ -1,0 +1,77 @@
+[root@es1 ~]# ab -n 300 -c 100 -k -w http://t-cache.interpark.com/cache1/ClassicIndex.asp
+<p>
+ This is ApacheBench, Version 2.3 <i>&lt;$Revision: 1430300 $&gt;</i><br>
+ Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/<br>
+ Licensed to The Apache Software Foundation, http://www.apache.org/<br>
+</p>
+<p>
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Finished 300 requests
+
+
+<table >
+<tr ><th colspan=2 bgcolor=white>Server Software:</th><td colspan=2 bgcolor=white>nginx/1.11.10</td></tr>
+<tr ><th colspan=2 bgcolor=white>Server Hostname:</th><td colspan=2 bgcolor=white>t-cache.interpark.com</td></tr>
+<tr ><th colspan=2 bgcolor=white>Server Port:</th><td colspan=2 bgcolor=white>80</td></tr>
+<tr ><th colspan=2 bgcolor=white>Document Path:</th><td colspan=2 bgcolor=white>/cache1/ClassicIndex.asp</td></tr>
+<tr ><th colspan=2 bgcolor=white>Document Length:</th><td colspan=2 bgcolor=white>216685 bytes</td></tr>
+<tr ><th colspan=2 bgcolor=white>Concurrency Level:</th><td colspan=2 bgcolor=white>100</td></tr>
+<tr ><th colspan=2 bgcolor=white>Time taken for tests:</th><td colspan=2 bgcolor=white>19.924 seconds</td></tr>
+<tr ><th colspan=2 bgcolor=white>Complete requests:</th><td colspan=2 bgcolor=white>300</td></tr>
+<tr ><th colspan=2 bgcolor=white>Failed requests:</th><td colspan=2 bgcolor=white>0</td></tr>
+<tr ><th colspan=2 bgcolor=white>Keep-Alive requests:</th><td colspan=2 bgcolor=white>300</td></tr>
+<tr ><th colspan=2 bgcolor=white>Total transferred:</th><td colspan=2 bgcolor=white>65163393 bytes</td></tr>
+<tr ><th colspan=2 bgcolor=white>HTML transferred:</th><td colspan=2 bgcolor=white>65005500 bytes</td></tr>
+<tr ><th colspan=2 bgcolor=white>Requests per second:</th><td colspan=2 bgcolor=white>15.06</td></tr>
+<tr ><th colspan=2 bgcolor=white>Transfer rate:</th><td colspan=2 bgcolor=white>3270525.70 kb/s received</td></tr>
+<tr ><th bgcolor=white colspan=4>Connnection Times (ms)</th></tr>
+<tr ><th bgcolor=white>&nbsp;</th> <th bgcolor=white>min</th>   <th bgcolor=white>avg</th>   <th bgcolor=white>max</th></tr>
+<tr ><th bgcolor=white>Connect:</th><td bgcolor=white>    0</td><td bgcolor=white>   13</td><td bgcolor=white>  162</td></tr>
+<tr ><th bgcolor=white>Processing:</th><td bgcolor=white>  161</td><td bgcolor=white> 5536</td><td bgcolor=white>10248</td></tr>
+<tr ><th bgcolor=white>Total:</th><td bgcolor=white>  161</td><td bgcolor=white> 5549</td><td bgcolor=white>10410</td></tr>
+</table>
+
+
+<hr/>
+
+<h2> 2nd 10second Cache </h2>
+
+[root@es1 ent]# ab -n 300 -c 100 -k -w http://t-cache.interpark.com/cache1/ClassicIndex.asp
+
+<p>
+ This is ApacheBench, Version 2.3 <i>&lt;$Revision: 1430300 $&gt;</i><br>
+ Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/<br>
+ Licensed to The Apache Software Foundation, http://www.apache.org/<br>
+</p>
+<p>
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Finished 300 requests
+
+
+<table >
+<tr ><th colspan=2 bgcolor=white>Server Software:</th><td colspan=2 bgcolor=white>nginx/1.11.10</td></tr>
+<tr ><th colspan=2 bgcolor=white>Server Hostname:</th><td colspan=2 bgcolor=white>t-cache.interpark.com</td></tr>
+<tr ><th colspan=2 bgcolor=white>Server Port:</th><td colspan=2 bgcolor=white>80</td></tr>
+<tr ><th colspan=2 bgcolor=white>Document Path:</th><td colspan=2 bgcolor=white>/cache1/ClassicIndex.asp</td></tr>
+<tr ><th colspan=2 bgcolor=white>Document Length:</th><td colspan=2 bgcolor=white>216685 bytes</td></tr>
+<tr ><th colspan=2 bgcolor=white>Concurrency Level:</th><td colspan=2 bgcolor=white>100</td></tr>
+<tr ><th colspan=2 bgcolor=white>Time taken for tests:</th><td colspan=2 bgcolor=white>20.700 seconds</td></tr>
+<tr ><th colspan=2 bgcolor=white>Complete requests:</th><td colspan=2 bgcolor=white>300</td></tr>
+<tr ><th colspan=2 bgcolor=white>Failed requests:</th><td colspan=2 bgcolor=white>0</td></tr>
+<tr ><th colspan=2 bgcolor=white>Keep-Alive requests:</th><td colspan=2 bgcolor=white>300</td></tr>
+<tr ><th colspan=2 bgcolor=white>Total transferred:</th><td colspan=2 bgcolor=white>65163060 bytes</td></tr>
+<tr ><th colspan=2 bgcolor=white>HTML transferred:</th><td colspan=2 bgcolor=white>65005500 bytes</td></tr>
+<tr ><th colspan=2 bgcolor=white>Requests per second:</th><td colspan=2 bgcolor=white>14.49</td></tr>
+<tr ><th colspan=2 bgcolor=white>Transfer rate:</th><td colspan=2 bgcolor=white>3147992.92 kb/s received</td></tr>
+<tr ><th bgcolor=white colspan=4>Connnection Times (ms)</th></tr>
+<tr ><th bgcolor=white>&nbsp;</th> <th bgcolor=white>min</th>   <th bgcolor=white>avg</th>   <th bgcolor=white>max</th></tr>
+<tr ><th bgcolor=white>Connect:</th><td bgcolor=white>    0</td><td bgcolor=white>    3</td><td bgcolor=white>   24</td></tr>
+<tr ><th bgcolor=white>Processing:</th><td bgcolor=white>  186</td><td bgcolor=white> 5655</td><td bgcolor=white>11279</td></tr>
+<tr ><th bgcolor=white>Total:</th><td bgcolor=white>  186</td><td bgcolor=white> 5658</td><td bgcolor=white>11303</td></tr>
+</table>
+
+

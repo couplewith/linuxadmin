@@ -1,0 +1,387 @@
+
+
+--------------------------------
+ No 캐시 1 회차 ClassicIndex.asp
+--------------------------------
+
+[root@es1 ~]# ab -n 300 -c 100 -k http://t-cache.interpark.com/nocache/ClassicIndex.asp
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking t-cache.interpark.com (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Finished 300 requests
+
+
+Server Software:        nginx/1.11.10
+Server Hostname:        t-cache.interpark.com
+Server Port:            80
+
+Document Path:          /nocache/ClassicIndex.asp
+Document Length:        1297 bytes
+
+Concurrency Level:      100
+Time taken for tests:   7.122 seconds
+Complete requests:      300
+Failed requests:        0
+Write errors:           0
+Non-2xx responses:      300
+Keep-Alive requests:    300
+Total transferred:      479916 bytes
+HTML transferred:       389100 bytes
+Requests per second:    42.13 [#/sec] (mean)
+Time per request:       2373.883 [ms] (mean)
+Time per request:       23.739 [ms] (mean, across all concurrent requests)
+Transfer rate:          65.81 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    3   4.2      0      14
+Processing:    89 2192 1048.8   1838    4061
+Waiting:       75 2192 1048.9   1838    4061
+Total:         89 2194 1050.2   1838    4068
+
+Percentage of the requests served within a certain time (ms)
+  50%   1838
+  66%   1853
+  75%   2648
+  80%   4042
+  90%   4054
+  95%   4060
+  98%   4066
+  99%   4067
+ 100%   4068 (longest request)
+
+
+--------------------------------
+NO 캐시 2 회차 ClassicIndex.asp
+-------------------------------- 
+[root@es1 ~]# ab -n 300 -c 100 -k http://t-cache.interpark.com/nocache/ClassicIndex.asp
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking t-cache.interpark.com (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Finished 300 requests
+
+
+Server Software:        nginx/1.11.10
+Server Hostname:        t-cache.interpark.com
+Server Port:            80
+
+Document Path:          /nocache/ClassicIndex.asp
+Document Length:        1297 bytes
+
+Concurrency Level:      100
+Time taken for tests:   2.624 seconds
+Complete requests:      300
+Failed requests:        0
+Write errors:           0
+Non-2xx responses:      300
+Keep-Alive requests:    300
+Total transferred:      480138 bytes
+HTML transferred:       389100 bytes
+Requests per second:    114.33 [#/sec] (mean)
+Time per request:       874.678 [ms] (mean)
+Time per request:       8.747 [ms] (mean, across all concurrent requests)
+Transfer rate:          178.69 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   3.7      0      10
+Processing:    33  798 312.5    852    2103
+Waiting:       23  798 312.6    852    2103
+Total:         33  801 313.6    852    2112
+
+Percentage of the requests served within a certain time (ms)
+  50%    852
+  66%    867
+  75%    872
+  80%   1232
+  90%   1239
+  95%   1242
+  98%   1254
+  99%   1681
+ 100%   2112 (longest request) 
+ 
+--------------------------------
+10초 캐시 1 회차 ClassicIndex.asp
+--------------------------------
+ 
+ [root@es1 ~]# ab -n 300 -c 100 -k http://t-cache.interpark.com/cache1/ClassicIndex.asp
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking t-cache.interpark.com (be patient)
+
+
+
+^C
+
+Server Software:        nginx/1.11.10
+Server Hostname:        t-cache.interpark.com
+Server Port:            80
+
+Document Path:          /cache1/ClassicIndex.asp
+Document Length:        216685 bytes
+
+Concurrency Level:      100
+Time taken for tests:   61.431 seconds
+Complete requests:      72
+Failed requests:        5
+   (Connect: 0, Receive: 0, Length: 5, Exceptions: 0)
+Write errors:           0
+Keep-Alive requests:    67
+Total transferred:      21034740 bytes
+HTML transferred:       20975274 bytes
+Requests per second:    1.17 [#/sec] (mean)
+Time per request:       85320.547 [ms] (mean)
+Time per request:       853.205 [ms] (mean, across all concurrent requests)
+Transfer rate:          334.39 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    6   2.9      6      10
+Processing:  4044 38455 10425.6  40789   58438
+Waiting:      244 18937 6694.2  17237   27303
+Total:       4054 38461 10426.1  40796   58447
+
+Percentage of the requests served within a certain time (ms)
+  50%  40796
+  66%  40798
+  75%  40800
+  80%  40801
+  90%  43171
+  95%  58445
+  98%  58447
+  99%  58447
+ 100%  58447 (longest request)
+ 
+ 
+--------------------------------
+10초 캐시 2 회차 ClassicIndex.asp
+-------------------------------- 
+ [root@es1 ~]# ab -n 300 -c 100 -k http://t-cache.interpark.com/cache1/ClassicIndex.asp
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking t-cache.interpark.com (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Finished 300 requests
+
+
+Server Software:        nginx/1.11.10
+Server Hostname:        t-cache.interpark.com
+Server Port:            80
+
+Document Path:          /cache1/ClassicIndex.asp
+Document Length:        216685 bytes
+
+Concurrency Level:      100
+Time taken for tests:   53.027 seconds
+Complete requests:      300
+Failed requests:        0
+Write errors:           0
+Keep-Alive requests:    300
+Total transferred:      65160951 bytes
+HTML transferred:       65005500 bytes
+Requests per second:    5.66 [#/sec] (mean)
+Time per request:       17675.514 [ms] (mean)
+Time per request:       176.755 [ms] (mean, across all concurrent requests)
+Transfer rate:          1200.04 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    5   7.0      0      20
+Processing:   442 14925 8294.9  14863   43677
+Waiting:      159 10105 4946.9  11561   19538
+Total:        442 14930 8297.6  14863   43694
+
+Percentage of the requests served within a certain time (ms)
+  50%  14863
+  66%  19801
+  75%  20857
+  80%  21390
+  90%  24316
+  95%  26326
+  98%  30234
+  99%  43256
+ 100%  43694 (longest request)
+ 
+ 
+ 
+---------------------------------
+5초 캐시 1 회차 ClassicIndex.asp
+-------------------------------- 
+ 
+[root@es1 ~]# ab -n 300 -c 100 -k http://t-cache.interpark.com/cache2/ClassicIndex.asp
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking t-cache.interpark.com (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Finished 300 requests
+
+
+Server Software:        nginx/1.11.10
+Server Hostname:        t-cache.interpark.com
+Server Port:            80
+
+Document Path:          /cache2/ClassicIndex.asp
+Document Length:        1297 bytes
+
+Concurrency Level:      100
+Time taken for tests:   19.822 seconds
+Complete requests:      300
+Failed requests:        0
+Write errors:           0
+Non-2xx responses:      300
+Keep-Alive requests:    300
+Total transferred:      482358 bytes
+HTML transferred:       389100 bytes
+Requests per second:    15.13 [#/sec] (mean)
+Time per request:       6607.403 [ms] (mean)
+Time per request:       66.074 [ms] (mean, across all concurrent requests)
+Transfer rate:          23.76 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    2   3.5      0      11
+Processing:    19 4194 3650.9   5817   13857
+Waiting:       19 4194 3650.9   5817   13857
+Total:         19 4197 3651.8   5825   13857
+
+Percentage of the requests served within a certain time (ms)
+  50%   5825
+  66%   5834
+  75%   6026
+  80%   6032
+  90%   7361
+  95%  13370
+  98%  13439
+  99%  13682
+ 100%  13857 (longest request)
+ 
+ 
+---------------------------------
+5초 캐시 2 회차 ClassicIndex.asp
+-------------------------------- 
+ 
+ [root@es1 ~]# ab -n 300 -c 100 -k http://t-cache.interpark.com/cache2/ClassicIndex.asp
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking t-cache.interpark.com (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Finished 300 requests
+
+
+Server Software:        nginx/1.11.10
+Server Hostname:        t-cache.interpark.com
+Server Port:            80
+
+Document Path:          /cache2/ClassicIndex.asp
+Document Length:        1297 bytes
+
+Concurrency Level:      100
+Time taken for tests:   11.116 seconds
+Complete requests:      300
+Failed requests:        0
+Write errors:           0
+Non-2xx responses:      300
+Keep-Alive requests:    300
+Total transferred:      477918 bytes
+HTML transferred:       389100 bytes
+Requests per second:    26.99 [#/sec] (mean)
+Time per request:       3705.179 [ms] (mean)
+Time per request:       37.052 [ms] (mean, across all concurrent requests)
+Transfer rate:          41.99 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0   12  19.1      0      55
+Processing:    15 2376 2763.5     38    6133
+Waiting:       15 2376 2763.4     38    6133
+Total:         15 2388 2778.3     38    6171
+
+Percentage of the requests served within a certain time (ms)
+  50%     38
+  66%   5177
+  75%   5689
+  80%   5691
+  90%   6148
+  95%   6152
+  98%   6153
+  99%   6154
+ 100%   6171 (longest request)
+ 
+ ---------------------------------
+5초 캐시 3 회차 ClassicIndex.asp
+-------------------------------- 
+ 
+ [root@es1 ~]# ab -n 300 -c 100 -k http://t-cache.interpark.com/cache2/ClassicIndex.asp
+This is ApacheBench, Version 2.3 <$Revision: 1430300 $>
+Copyright 1996 Adam Twiss, Zeus Technology Ltd, http://www.zeustech.net/
+Licensed to The Apache Software Foundation, http://www.apache.org/
+
+Benchmarking t-cache.interpark.com (be patient)
+Completed 100 requests
+Completed 200 requests
+Completed 300 requests
+Finished 300 requests
+
+
+Server Software:        nginx/1.11.10
+Server Hostname:        t-cache.interpark.com
+Server Port:            80
+
+Document Path:          /cache2/ClassicIndex.asp
+Document Length:        1297 bytes
+
+Concurrency Level:      100
+Time taken for tests:   6.084 seconds
+Complete requests:      300
+Failed requests:        0
+Write errors:           0
+Non-2xx responses:      300
+Keep-Alive requests:    300
+Total transferred:      483246 bytes
+HTML transferred:       389100 bytes
+Requests per second:    49.31 [#/sec] (mean)
+Time per request:       2028.055 [ms] (mean)
+Time per request:       20.281 [ms] (mean, across all concurrent requests)
+Transfer rate:          77.57 [Kbytes/sec] received
+
+Connection Times (ms)
+              min  mean[+/-sd] median   max
+Connect:        0    3   4.6      0      13
+Processing:    15 1944 2744.4     25    6026
+Waiting:       15 1944 2744.4     25    6026
+Total:         15 1947 2748.8     25    6038
+
+Percentage of the requests served within a certain time (ms)
+  50%     25
+  66%     77
+  75%   5479
+  80%   6022
+  90%   6028
+  95%   6030
+  98%   6033
+  99%   6035
+ 100%   6038 (longest request)

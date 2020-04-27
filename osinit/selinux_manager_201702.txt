@@ -1,0 +1,12 @@
+
+ semanage fcontext -a -t httpd_sys_content_t "/data/MyDB(/.*)?"
+
+
+
+ restorecon -R -v /web
+ 
+
+[delete]
+semanage fcontext -d file-name|directory-name
+
+semanage fcontext -d /test

@@ -1,0 +1,80 @@
+
+[root@es1 MyDB]# ps -efZ | grep mysql
+unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 root 5135 3922  0 15:53 pts/2 00:00:00 vi mysql_selinux.sh
+system_u:system_r:mysqld_safe_t:s0 root   7230     1  0 16:10 ?        00:00:00 /bin/sh /usr/bin/mysqld_safe --datadir=/data/MyDB --pid-file=/data/MyDB/es1.with.com.pid
+system_u:system_r:mysqld_t:s0   mysql     7607  7230  0 16:10 ?        00:00:00 /usr/sbin/mysqld --basedir=/usr --datadir=/data/MyDB --plugin-dir=/usr/lib64/mysql/plugin --user=mysql --log-error=/data/MyDB/es1.with.com.err --open-files-limit=8192 --pid-file=/data/MyDB/es1.with.com.pid --socket=/var/lib/mysql/mysql.sock --port=3306
+unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 root 7684 2596  0 16:14 pts/0 00:00:00 grep --color=auto mysql
+
+
+system_u:system_r:mysqld_safe_t:s0 root   7230     1  0 16:10 ?        00:00:00 /bin/sh /usr/bin/mysqld_safe --datadir=/data/MyDB --pid-fi
+system_u:system_r:mysqld_t:s0   mysql     7607  7230  0 16:10 ?        00:00:00 /usr/sbin/mysqld --basedir=/usr --datadir=/data/MyDB --plu
+
+
+
+
+[root@es1 my.cnf.d]# ls -alZ /data/MyLogs/
+drwxr-xr-x. mysql mysql unconfined_u:object_r:unlabeled_t:s0 .
+drwxr-xr-x. root  root  system_u:object_r:unlabeled_t:s0 ..
+-rw-rw----. mysql mysql system_u:object_r:unlabeled_t:s0 ib_logfile0
+-rw-rw----. mysql mysql system_u:object_r:unlabeled_t:s0 ib_logfile1
+-rw-rw----. mysql mysql system_u:object_r:unlabeled_t:s0 ib_logfile2
+
+drwxr-xr-x. mysql         mysql         unconfined_u:object_r:unlabeled_t:s0 /data/MyLogs
+
+
+chcon -R -t  mysqld_db_t /data/MyLogs
+
+drwx------. mysql         mysql         unconfined_u:object_r:mysqld_db_t:s0 MyDB
+drwxr-xr-x. mysql         mysql         unconfined_u:object_r:mysqld_db_t:s0 MyLogs
+[root@es1 my.cnf.d]# ls -alZ /data/MyLogs/
+drwxr-xr-x. mysql mysql unconfined_u:object_r:mysqld_db_t:s0 .
+drwxr-xr-x. root  root  system_u:object_r:unlabeled_t:s0 ..
+-rw-rw----. mysql mysql system_u:object_r:mysqld_db_t:s0 ib_logfile0
+-rw-rw----. mysql mysql system_u:object_r:mysqld_db_t:s0 ib_logfile1
+-rw-rw----. mysql mysql system_u:object_r:mysqld_db_t:s0 ib_logfile2
+
+drwxr-xr-x. mysql mysql unconfined_u:object_r:mysqld_db_t:s0 .
+drwxr-xr-x. root  root  system_u:object_r:unlabeled_t:s0 ..
+-rw-rw----. mysql mysql system_u:object_r:mysqld_db_t:s0 mysql-bin.000001
+-rw-rw----. mysql mysql system_u:object_r:mysqld_db_t:s0 mysql-bin.index
+
+
+
+[root@es1 MyDB]# systemctl stop mysql
+
+[root@es1 MyDB]# systemctl status mysql -l
+● mysql.service - LSB: start and stop MySQL
+   Loaded: loaded (/etc/rc.d/init.d/mysql; bad; vendor preset: disabled)
+   Active: inactive (dead) since Tue 2017-10-03 16:10:06 KST; 16s ago
+     Docs: man:systemd-sysv-generator(8)
+  Process: 7187 ExecStop=/etc/rc.d/init.d/mysql stop (code=exited, status=0/SUCCESS)
+  Process: 6673 ExecStart=/etc/rc.d/init.d/mysql start (code=exited, status=0/SUCCESS)
+
+Oct 03 16:04:26 es1.with.com systemd[1]: Starting LSB: start and stop MySQL...
+Oct 03 16:04:26 es1.with.com mysql[6673]: Starting MySQL.171003 16:04:26 mysqld_safe Logging to '/data/MyDB/es1.with.com.err'.
+Oct 03 16:04:26 es1.with.com mysql[6673]: 171003 16:04:26 mysqld_safe Starting mysqld daemon with databases from /data/MyDB
+Oct 03 16:04:28 es1.with.com mysql[6673]: . SUCCESS!
+Oct 03 16:04:28 es1.with.com systemd[1]: Started LSB: start and stop MySQL.
+Oct 03 16:10:04 es1.with.com systemd[1]: Stopping LSB: start and stop MySQL...
+Oct 03 16:10:06 es1.with.com mysql[7187]: Shutting down MySQL.. SUCCESS!
+Oct 03 16:10:06 es1.with.com systemd[1]: Stopped LSB: start and stop MySQL.
+
+
+[root@es1 MyDB]# systemctl start mysql
+
+[root@es1 MyDB]# systemctl status mysql -l
+● mysql.service - LSB: start and stop MySQL
+   Loaded: loaded (/etc/rc.d/init.d/mysql; bad; vendor preset: disabled)
+   Active: active (running) since Tue 2017-10-03 16:10:42 KST; 2s ago
+     Docs: man:systemd-sysv-generator(8)
+  Process: 7187 ExecStop=/etc/rc.d/init.d/mysql stop (code=exited, status=0/SUCCESS)
+  Process: 7219 ExecStart=/etc/rc.d/init.d/mysql start (code=exited, status=0/SUCCESS)
+   CGroup: /system.slice/mysql.service
+           tq7230 /bin/sh /usr/bin/mysqld_safe --datadir=/data/MyDB --pid-file=/data/MyDB/es1.with.com.pid
+           mq7607 /usr/sbin/mysqld --basedir=/usr --datadir=/data/MyDB --plugin-dir=/usr/lib64/mysql/plugin --user=mysql --log-error=/data/MyDB/es1.with.com.err --open-files-limit=8192 --pid-file=/data/MyDB/es1.with.com.pid --socket=/var/lib/mysql/mysql.sock --port=3306
+
+Oct 03 16:10:40 es1.with.com systemd[1]: Starting LSB: start and stop MySQL...
+Oct 03 16:10:41 es1.with.com mysql[7219]: Starting MySQL.171003 16:10:41 mysqld_safe Logging to '/data/MyDB/es1.with.com.err'.
+Oct 03 16:10:41 es1.with.com mysql[7219]: 171003 16:10:41 mysqld_safe Starting mysqld daemon with databases from /data/MyDB
+Oct 03 16:10:42 es1.with.com mysql[7219]: . SUCCESS!
+Oct 03 16:10:42 es1.with.com systemd[1]: Started LSB: start and stop MySQL.

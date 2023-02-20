@@ -1,0 +1,152 @@
+
+[client]
+port            = 3306
+socket          = /tmp/mysql_3306.sock
+default-character-set=utf8
+
+[mysqld]
+port            = 3306
+socket          = /tmp/mysql_3306.sock
+
+init_connect='SET autocommit=0'
+init_connect=SET NAMES utf8
+character-set-server=utf8
+
+#lower_case_table_names=0
+
+skip_name_resolve = 1
+skip-external-locking
+#skip-slave-start = 1
+
+key_buffer_size  = 256M
+sort_buffer_size = 4M
+read_buffer_size = 4M
+join_buffer_size = 4M
+read_rnd_buffer_size = 4M
+
+myisam_sort_buffer_size = 32M
+thread_cache_size = 16
+query_cache_size= 32M
+query_cache_limit = 2M
+
+thread_stack = 192K
+thread_concurrency  = 8
+thread_cache_size   = 200
+table_open_cache    = 512
+open_files_limit    = 20480
+max_connections     = 1000
+max_connect_errors  = 1000
+max_heap_table_size = 64M
+max_allowed_packet  =  16M
+
+#net_buffer_length=32768
+net_read_timeout  = 30
+
+tmp_table_size = 256M
+
+slave_compressed_protocol
+#slave-skip-errors = all
+#slave-skip-errors = 1062
+
+### Dtabase #############################
+
+server-id=139
+
+# MASTER_INFO_REPOSITORY = table
+master_info_repository = TABLE
+
+# for master DB BIN-LOG
+#-----------------------
+#log-bin=/data/nmailDB/nmailDB_bin/master-bin
+#binlog-format=MIXED
+#binlog_cache_size = 16M
+#expire_logs_days = 50
+expire_logs_day  = 10
+
+# 5.6 upgrade
+explicit_defaults_for_timestamp = 1
+secure-file-priv=/data/nmailDB/nmailDB-secure-file
+
+# binlog_checksum = NONE
+#* binlog_checksum = CRC32
+
+# bef master upgrade 5.5
+#gtid-mode=off
+
+
+# For Slave  ----------------
+#*log-slave-updates
+relay-log=/data/nmailDB/nmailDB_bin/nmailDBDB_3306-relay-bin
+relay-log-index=/data/nmailDB/nmailDB_bin/nmailDBDB_3306-relay-bin.index
+
+#log A¡×A¢®
+log_error=/data/nmailDB/nmailDB_logs/nmail_SlaveDB139_mysql.err
+
+
+datadir = /data/nmailDB/nmailDB_data
+default-storage-engine = myisam
+
+innodb_file_per_table = 1
+innodb = on
+
+#innodb
+innodb_data_home_dir = /data/nmailDB/nmailDB_innodb
+innodb_log_group_home_dir = /data/nmailDB/nmailDB_innodb
+innodb_data_file_path=ibdata1:12M:autoextend
+#innodb_data_file_path = ibdata1:1G:autoextend
+innodb_checksum_algorithm=innodb
+#innodb_log_checksum_algorithm=innodb   # 5637 unknown
+
+
+# innodb_additional_mem_pool_size = 20M   # deprecated 5.6
+#innodb_buffer_pool_size = 15G
+innodb_buffer_pool_size = 5G
+
+innodb_thread_concurrency = 16
+innodb_commit_concurrency = 16
+#innodb_thread_concurrency = 48
+#innodb_commit_concurrency = 48
+
+innodb_io_capacity=300
+innodb_read_io_threads=16
+innodb_write_io_threads=16
+
+innodb_open_files = 10240
+innodb_force_recovery = 0
+#innodb_force_recovery = 0
+#innodb_force_recovery = 1
+#innodb_force_recovery = 2
+#innodb_force_recovery = 3
+
+innodb_flush_method=O_DIRECT
+#innodb_flush_log_at_trx_commit = 1
+#*innodb_flush_log_at_trx_commit = 0
+innodb_log_buffer_size = 8M
+innodb_log_files_in_group=2
+innodb_log_file_size=50331648
+#innodb_log_block_size=512      # 5637 unknown
+
+
+innodb_max_purge_lag = 0
+
+#log_bin_trust_function_creators = 1
+
+plugin_dir=/usr/local/mysql/lib/plugin
+
+[mysqldump]
+quick
+max_allowed_packet = 128M
+
+[mysql]
+no-auto-rehash
+default-character-set = utf8
+
+
+[myisamchk]
+key_buffer_size = 128M
+sort_buffer_size = 128M
+read_buffer = 16M
+write_buffer = 16M
+
+[mysqlhotcopy]
+interactive-timeout

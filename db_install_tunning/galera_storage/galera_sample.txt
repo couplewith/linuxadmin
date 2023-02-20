@@ -1,0 +1,35 @@
+
+
+#  mkdir -p /data2/DATABASE/MariaDB
+# mkdir -p /data2/DATABASE/MaLogs
+# chown -R mysql:mysql /data2/DATABASE
+
+
+
+#
+# * Galera-related settings
+#
+[galera]
+
+#wsrep_cluster_address=gcomm://
+#wsrep_cluster_name=[cluster_name]
+#wsrep_node_address=[local_node_ip]
+#wsrep_node_name=[local_node_name]
+
+wsrep_on=ON
+wsrep_provider=/usr/lib64/galera/libgalera_smm.so
+wsrep_cluster_name="eslog-cluster"
+wsrep_cluster_address="gcomm://shopGoodsAPI68:4567,shopGoodsAPI69:4567,shopGoodsAPI70:4567?pc.wait_prim=no"
+wsrep_node_name=eslogdb1
+wsrep_node_address=211.233.74.68
+wsrep_provider_options="pc.ignore_sb=no;ist.recv_addr=211.233.74.69;gmcast.listen_addr=tcp://0.0.0.0:4567"
+wsrep_sst_method=rsync
+wsrep_sst_auth=repuser:repuser
+
+wsrep_slave_threads=3
+
+#gcache.dir = /var/lib/mysql/;
+#gcache.keep_pages_size = 0;
+#gcache.mem_size = 0;
+#gcache.name = /var/lib/mysql//galera.cache;
+

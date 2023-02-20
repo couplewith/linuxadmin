@@ -1,0 +1,2 @@
+SET GLOBAL master_info_repository='table';
+CHANGE MASTER TO MASTER_HOST='172.21.1.145', MASTER_USER='rep_id', MASTER_PASSWORD='dlsxjvkzm1!', MASTER_LOG_FILE='mysql-bin.001071' , MASTER_LOG_POS=0;

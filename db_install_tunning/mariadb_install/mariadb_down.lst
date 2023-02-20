@@ -1,0 +1,10 @@
+https://downloads.mariadb.com/MariaDB/mariadb-10.4/yum/centos8-amd64/rpms/galera-4-26.4.3-1.rhel8.0.el8.x86_64.rpm
+https://downloads.mariadb.com/MariaDB/mariadb-10.4/yum/centos8-amd64/rpms/MariaDB-backup-10.4.12-1.el8.x86_64.rpm
+https://downloads.mariadb.com/MariaDB/mariadb-10.4/yum/centos8-amd64/rpms/MariaDB-client-10.4.12-1.el8.x86_64.rpm
+https://downloads.mariadb.com/MariaDB/mariadb-10.4/yum/centos8-amd64/rpms/MariaDB-common-10.4.12-1.el8.x86_64.rpm
+https://downloads.mariadb.com/MariaDB/mariadb-10.4/yum/centos8-amd64/rpms/MariaDB-connect-engine-10.4.12-1.el8.x86_64.rpm
+https://downloads.mariadb.com/MariaDB/mariadb-10.4/yum/centos8-amd64/rpms/MariaDB-gssapi-server-10.4.12-1.el8.x86_64.rpm
+https://downloads.mariadb.com/MariaDB/mariadb-10.4/yum/centos8-amd64/rpms/MariaDB-rocksdb-engine-10.4.12-1.el8.x86_64.rpm
+https://downloads.mariadb.com/MariaDB/mariadb-10.4/yum/centos8-amd64/rpms/MariaDB-server-10.4.12-1.el8.x86_64.rpm
+https://downloads.mariadb.com/MariaDB/mariadb-10.4/yum/centos8-amd64/rpms/MariaDB-shared-10.4.12-1.el8.x86_64.rpm
+https://dlm.mariadb.com/975739/MaxScale/2.4.7/centos/8/x86_64/maxscale-2.4.7-1.centos.8.x86_64.rpm

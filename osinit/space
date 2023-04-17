@@ -1,5 +1,7 @@
 #!/bin/sh
 
+
+
 ##=======================================================================================
 ##
 ##     ----------------------------------
@@ -9,34 +11,33 @@
 ## Copy-Right
 ## ---------------
 #  Copyright couplwith@yahoo.co.kr  Dr.choi in Seoul Korea.
-#  since 1999 hanil life insurance - simmani - enkai - haansoft - interpark
+#  since 2000 hanil life insurance - simmani - enkai - haansoft
 #
 ## Update Note
 ## ---------------
-#   add subdir summery
-#            in 2002. 1.  1   : <couplewith@yahoo.co.kr>
-#   add sort by summery of size of subdirectory
-#            in 2003. 1.  1   : <couplewith@yahoo.co.kr>
-#   add installer script v1.0
-#            in 2004. 11. 12  : <couplewith@yahoo.co.kr>
-#   mod installer script v2.2 : linewidth changed and comment
-#            in 2016. 5. 28  : <couplewith@yahoo.co.kr>
+#  1999.  9.   1 : init                                v0.1  by <couplewith@yahoo.co.kr>
+#  2002.  1.   1 : add subdir summery                  v0.9  by <couplewith@yahoo.co.kr>
+#  2003.  1.   1 : add sort by summery of size of subdirectory v1.0  by <couplewith@yahoo.co.kr> 
+#  2004. 11. 12 : add installer script                 v1.1  by <couplewith@yahoo.co.kr> 
+#  2016.  5. 28 : modify linewidth changed and comment v2.1  by <couplewith@yahoo.co.kr> 
+#  2017. 10. 01 : add dirpattern script                v2.2  by <couplewith@yahoo.co.kr> 
 #
 # # Install guiude 
-#
-#   This is Shell script with awk (gawk, nawk) and du command.
-#   Using "space" is easy find where are usage large files or space in your data storage.
+#  --------------------
+#   This is Shell script with awk (gawk, nawk) and du commands.
+#   Using 'space' is easy find where are usage large files or space in your data storage.
 #   This Script show that shell script is a good program for your system management.
 #   Imagine for easy and convinence ...
 #   Thank you.
 #
-#   For using "space" by followed some steps:
-#   1.Requirement : linux : gawk du (cygwin) / unix nawk, gawk, du
-#   2.Download and Save as 
-#           : /usr/local/bin/space
+#   For using 'space' command by followed some steps:
+#   1. Requirement : linux : gawk du (cygwin) / unix nawk, gawk, du
+#   2. Download and Save as  install-space.sh
+#      and run install-space.sh for installation.
+#        it will create : /usr/local/bin/space  and 
 #             chmod 755 /usr/local/bin/space
-#   3.command and execute : space 
-#
+#   3. command and execute : space 
+#   * other wise you can copy the space file to ~/bin/space and chmod 755 ~/bin/space
 #
 ##=======================================================================================
 
@@ -47,31 +48,39 @@ echo "";
 echo "";
 df -k ;
 APW=`pwd`
+APW=${1:-`pwd`}
 
 #for Sun Server
 #du -ok . 2>/dev/null | nawk -F/ -v pas= '
 #for Linux Server
-#du -Sk . 2>/dev/null | gawk -F/ -v pas= '
+#du -Sk  2>/dev/null | gawk -F/ -v pas= '
+#du -Sk $APW 2>/dev/null | sed -e "s/$dpattern/./"
+#   dpattern : \/usr\/local\/src
 
-du -Sk . 2>/dev/null | gawk -F/ -v pas="$APW" '
+dpattern=$( echo "$APW" | sed -e 's/\//\\\//g' )
+
+du -Sk $APW 2>/dev/null | sed -e "s/$dpattern/./" | gawk -F/ -v pas=$APW '
     BEGIN {
-                    print  "\t\t---------------------------";
-                    print  "\t\t DIsk Usae of current Dir";
-                    print  "\t\t--------------------------";
+                    print  "\t\t------------------------------";
+                    print  "\t\t DIsk Usae of current Dir V2.2";
+                    print  "\t\t------------------------------";
                     printf "\t\t [%s] \n\n", pas;
 
-                    printf"\t%-50s : %10s   : %10s \n","------------------",
-				   			"----------","---------";
-                    printf"\t%-50s : %10s   : %10s \n","DIRNAME", "SIZE (MB)","Subdir cnt";
-                    printf"\t%-50s : %10s   : %10s \n","------------------",
-				   			"----------","---------";
+                    printf"\t-------------------------------------------------------------------------------\n"
+                    printf"\t%-50s : %12s   : %10s \n","DIRNAME", "SIZE (MB)","Subdir cnt";
+                    printf"\t-------------------------------------------------------------------------------\n"
                tots=0;
                tcnt=0;
                i=0;
            }
            {
                 pos=index($1, ".");
-                size=substr($1,1, pos-1);
+                if(pos > 0 ){
+                    size=substr($1,1, pos-1);
+                }else{
+                    size=$1;
+                }
+                gsub(" ","" , $2);
 
                 tcnt++;
                 tots+=size;
@@ -90,7 +99,7 @@ du -Sk . 2>/dev/null | gawk -F/ -v pas="$APW" '
                 }
                 else
                 {
-                  # printf"\t%-50s : %10.2fMB : %10d \n",dirs, dsize/1024, dcnt;
+                  # printf"\t%-45s : %10.2fMB : %10d \n",dirs, dsize/1024, dcnt;
                     DIR[i]= dirs;
                     Dsize[i]=dsize/1024;
                     Dcnt[i]=dcnt;
@@ -133,11 +142,9 @@ du -Sk . 2>/dev/null | gawk -F/ -v pas="$APW" '
                     {
                         printf"\t%-50s : %10.2fMB : %10d \n",DIR[j], Dsize[j], Dcnt[j];
                     }
-                    printf"\t%-50s : %10s   : %10s \n","------------------",
-				   			"----------","---------";
+                    printf"\t-------------------------------------------------------------------------------\n"
                     printf"\t%-50s : %10.2fMB : %10d \n","TOTALSIZE", tots/1024, tcnt;
-                    printf"\t%-50s : %10s   : %10s \n","------------------",
-				   			"----------","---------";
-                    printf"\t      --  Copy Right @ Choi Doo Rip  1999  --  \n"
+                    printf"\t-------------------------------------------------------------------------------\n"
+                    printf"\t      --  Copy Right @ Choi Doo Rip  1999 09 01  --  \n"
 
             }'

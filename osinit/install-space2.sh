@@ -1,11 +1,12 @@
 #!/bin/sh
 
+dos2unix $0
 
 CopyRights="
 ##=======================================================================================
 ##
 ##     ----------------------------------
-##      SPACE Script for Linux   V2.1
+##      SPACE Script for Linux   V2.2
 ##     ----------------------------------
 #
 ## Copy-Right
@@ -15,12 +16,29 @@ CopyRights="
 #
 ## Update Note
 ## ---------------
-#   add subdir summery
-#            in 2002. 1.  1   : <couplewith@yahoo.co.kr>
-#   add sort by summery of size of subdirectory
-#            in 2003. 1.  1   : <couplewith@yahoo.co.kr>
-#   add installer script v1.0
-#            in 2004. 11. 12  : <couplewith@yahoo.co.kr>
+#  1999.  9.   1 : init                                v0.1  by <couplewith@yahoo.co.kr>
+#  2002.  1.   1 : add subdir summery                  v0.9  by <couplewith@yahoo.co.kr>
+#  2003.  1.   1 : add sort by summery of size of subdirectory v1.0  by <couplewith@yahoo.co.kr> 
+#  2004. 11. 12 : add installer script                 v1.1  by <couplewith@yahoo.co.kr> 
+#  2016.  5. 28 : modify linewidth changed and comment v2.1  by <couplewith@yahoo.co.kr> 
+#  2017. 10. 01 : add dirpattern script                v2.2  by <couplewith@yahoo.co.kr> 
+#
+# # Install guiude 
+#  --------------------
+#   This is Shell script with awk (gawk, nawk) and du commands.
+#   Using 'space' is easy find where are usage large files or space in your data storage.
+#   This Script show that shell script is a good program for your system management.
+#   Imagine for easy and convinence ...
+#   Thank you.
+#
+#   For using 'space' command by followed some steps:
+#   1. Requirement : linux : gawk du (cygwin) / unix nawk, gawk, du
+#   2. Download and Save as  install-space.sh
+#      and run install-space.sh for installation.
+#        it will create : /usr/local/bin/space  and 
+#             chmod 755 /usr/local/bin/space
+#   3. command and execute : space 
+#   * other wise you can copy the space file to ~/bin/space and chmod 755 ~/bin/space
 #
 ##=======================================================================================
 "
@@ -113,12 +131,12 @@ dpattern=\$( echo "\$APW" | sed -e 's/\//\\\\\//g' )
 du ${DuOption} \$APW 2>/dev/null | sed -e "s/\$dpattern/./" | ${WhichAwk} -F/ -v pas=\$APW '
     BEGIN {
                     print  "\t\t------------------------------";
-                    print  "\t\t DIsk Usae of current Dir V2.0";
+                    print  "\t\t DIsk Usae of current Dir V2.2";
                     print  "\t\t------------------------------";
                     printf "\t\t [%s] \n\n", pas;
 
                     printf"\t-------------------------------------------------------------------------------\n"
-                    printf"\t%-45s : %10s   : %10s \n","DIRNAME", "SIZE (MB)","Subdir cnt";
+                    printf"\t%-50s : %12s   : %10s \n","DIRNAME", "SIZE (MB)","Subdir cnt";
                     printf"\t-------------------------------------------------------------------------------\n"
                tots=0;
                tcnt=0;
@@ -191,10 +209,10 @@ du ${DuOption} \$APW 2>/dev/null | sed -e "s/\$dpattern/./" | ${WhichAwk} -F/ -v
                     # PRINT SECTION
                     for ( j=0; j<=i ; j++ )
                     {
-                        printf"\t%-45s : %10.2fMB : %10d \n",DIR[j], Dsize[j], Dcnt[j];
+                        printf"\t%-50s : %10.2fMB : %10d \n",DIR[j], Dsize[j], Dcnt[j];
                     }
                     printf"\t-------------------------------------------------------------------------------\n"
-                    printf"\t%-45s : %10.2fMB : %10d \n","TOTALSIZE", tots/1024, tcnt;
+                    printf"\t%-50s : %10.2fMB : %10d \n","TOTALSIZE", tots/1024, tcnt;
                     printf"\t-------------------------------------------------------------------------------\n"
                     printf"\t      --  Copy Right @ Choi Doo Rip  1999 09 01  --  \n"
 
